@@ -1,0 +1,9 @@
+# AIDERTESTBOX .gitignore
+# Aider chat history + cache stay in the sandbox, not in git
+
+.aider.*
+aider/
+__pycache__/
+*.pyc
+.env
+.venv/

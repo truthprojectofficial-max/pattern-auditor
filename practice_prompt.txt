@@ -1,0 +1,39 @@
+# CODE REVIEW REQUEST — Practice Run
+
+## Context
+
+You are reviewing a Python function. The conventions to check against
+depend on the project, so this is a generic review prompt — you should
+ask the human what conventions apply before reviewing.
+
+## What to ask the human before reviewing
+
+1. What is the project's coding standard? (PEP 8, Google style, project-specific?)
+2. What is the function's contract? (inputs, outputs, error cases)
+3. Are there tests? Should you run them?
+4. Is there a linter configured? Should you run it?
+
+## The code to review
+
+
+
+## What to review for
+
+1. Bugs — any logic error, race condition, or edge case that could fail
+2. Error handling — what happens if input_path doesn't exist, output_path
+   can't be written, transform raises
+3. Resource handling — files closed on exception? (Hint: not with this code)
+4. Determinism — same input = same output?
+5. Security — path traversal risk, sensitive data in result
+
+## Format
+
+List every issue found. If no issues, say "CLEAN" and explain why the
+function is correct. Be direct — no hedging, no flattery.
+
+## What NOT to do
+
+- Do not write code into any project file outside the sandbox
+- Do not assume context the human did not provide
+- Do not recommend building things that already exist
+- Do not invent conventions
