@@ -1,7 +1,7 @@
 # Pattern AI-uditor v0.1.0 - signed artifact checksums
-# Generated: 2026-08-02T21:26:38+10:00
+# Generated: 2026-08-02T22:11:38+10:00
 # Signing key: pattern-auditor-release.jks (RSA 2048, valid 10000 days)
 # Algorithm: SHA-256
 
-8b09728eaa18cb267fc580e25e26e47aab266665056dee3d98ce222aff3005d1  Pattern-AI-uditor-v0.1.0.apk
-e91fe2d17a308b3162344420d1d346b5d8cf22a8b677480cb0b8d92a84b11d24  Pattern-AI-uditor-v0.1.0.aab
+d2f603b83b6a5d722ee23aee98cd2a8c874918c421e4a71394c0f5b92d92268e  Pattern-AI-uditor-v0.1.0.apk
+5cc0518e77ec668006ad4f950d9a17d8af9054f903832fb7fc5c7405f1646574  Pattern-AI-uditor-v0.1.0.aab
