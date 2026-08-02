@@ -360,7 +360,13 @@ private fun handleIntent(
     if (intent == null) return
     if (intent.action != Intent.ACTION_SEND) return
     if (intent.type != "text/plain") return
-    val payload = intent.getStringExtra(Intent.EXTRA_TEXT) ?: ""
+    // Chrome on Android sometimes puts the shareable text in EXTRA_SUBJECT (page title)
+    // and leaves EXTRA_TEXT empty. Fall back to subject.
+    var payload = intent.getStringExtra(Intent.EXTRA_TEXT) ?: ""
+    if (payload.isBlank()) {
+        payload = intent.getStringExtra(Intent.EXTRA_SUBJECT) ?: ""
+    }
+    if (payload.isBlank()) return  // nothing to scan, leave field empty
     if (payload.length > PatternAuditor.MAX_INPUT_CHARS) {
         setError(
             "Shared text exceeds the limit of " + PatternAuditor.MAX_INPUT_CHARS + " characters. " +
