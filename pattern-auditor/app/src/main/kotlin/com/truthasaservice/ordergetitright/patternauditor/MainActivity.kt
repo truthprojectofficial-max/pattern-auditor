@@ -44,6 +44,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -196,27 +197,35 @@ private fun App() {
                             },
                         label = { Text("Paste or type text to scan") },
                         supportingText = {
-                            Text("${text.length} / ${PatternAuditor.MAX_INPUT_CHARS} chars")
+                            Text(text.length.toString() + " / " + PatternAuditor.MAX_INPUT_CHARS + " chars")
                         },
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                        keyboardActions = KeyboardActions(onDone = { keyboard?.hide() }),
                         enabled = state != ScreenState.Scanning,
                     )
 
                     Button(
                         onClick = {
-                            when {
-                                text.length > PatternAuditor.MAX_INPUT_CHARS -> {
-                                    state = ScreenState.TooLarge
+                            try {
+                                when {
+                                    text.length > PatternAuditor.MAX_INPUT_CHARS -> {
+                                        state = ScreenState.TooLarge
+                                    }
+                                    text.isBlank() -> {
+                                        matches = emptyList()
+                                        state = ScreenState.Done
+                                    }
+                                    else -> {
+                                        state = ScreenState.Scanning
+                                        // Local scan. No network. No LLM.
+                                        matches = PatternAuditor.scan(text)
+                                        state = ScreenState.Done
+                                    }
                                 }
-                                text.isBlank() -> {
-                                    matches = emptyList()
-                                    state = ScreenState.Done
-                                }
-                                else -> {
-                                    state = ScreenState.Scanning
-                                    // Local scan. No network. No LLM.
-                                    matches = PatternAuditor.scan(text)
-                                    state = ScreenState.Done
-                                }
+                            } catch (e: Throwable) {
+                                matches = emptyList()
+                                errorMessage = "Scan failed: " + e.javaClass.simpleName + ": " + (e.message ?: "unknown")
+                                state = ScreenState.Idle
                             }
                         },
                         enabled = state != ScreenState.Scanning
@@ -224,6 +233,35 @@ private fun App() {
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Text("SCAN")
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        OutlinedButton(
+                            onClick = {
+                                text = ""
+                                matches = emptyList()
+                                errorMessage = null
+                                state = ScreenState.Idle
+                            },
+                            enabled = text.isNotEmpty(),
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("CLEAR")
+                        }
+                        OutlinedButton(
+                            onClick = {
+                                text = demoText()
+                                matches = emptyList()
+                                errorMessage = null
+                                state = ScreenState.Idle
+                            },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text("LOAD SAMPLE")
+                        }
                     }
 
                     errorMessage?.let { msg ->
@@ -243,8 +281,8 @@ private fun App() {
 
                     if (state == ScreenState.TooLarge) {
                         Text(
-                            "Input exceeds the limit of ${PatternAuditor.MAX_INPUT_CHARS} characters. " +
-                                "Please truncate deliberately; the app never silently cuts the text.",
+                            "Input exceeds the limit of " + PatternAuditor.MAX_INPUT_CHARS + " characters. " +
+                                "Tap CLEAR, trim the text, and paste again. The app never silently cuts the text.",
                             color = MaterialTheme.colorScheme.error,
                         )
                     }
@@ -261,11 +299,8 @@ private fun App() {
 
 @Composable
 private fun ResultArea(matches: List<PatternMatch>, version: String) {
-    val scroll = rememberScrollState()
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(scroll),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         if (matches.isEmpty()) {
@@ -283,20 +318,20 @@ private fun ResultArea(matches: List<PatternMatch>, version: String) {
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
                         Text(
-                            "${m.patternId} \u2014 ${m.patternName}",
+                            m.patternId + " \u2014 " + m.patternName,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.SemiBold,
                             overflow = TextOverflow.Ellipsis,
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            "Matched: \u201C${m.matchedText}\u201D",
+                            "Matched: \u201C" + m.matchedText + "\u201D",
                             style = MaterialTheme.typography.bodyMedium,
                             fontFamily = FontFamily.Monospace,
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            "Indicator: ${m.ruleIndicator}",
+                            "Indicator: " + m.ruleIndicator,
                             style = MaterialTheme.typography.bodySmall,
                         )
                         Spacer(modifier = Modifier.height(4.dp))
@@ -309,10 +344,13 @@ private fun ResultArea(matches: List<PatternMatch>, version: String) {
             }
         }
         HorizontalDivider()
-        Text("Ruleset: $version", style = MaterialTheme.typography.labelMedium)
+        Text("Ruleset: " + version, style = MaterialTheme.typography.labelMedium)
         Text("Processed on this device", style = MaterialTheme.typography.labelMedium)
     }
 }
+
+private fun demoText(): String =
+    "I apologize for the confusion. Based on my analysis the data clearly shows this is 100% accurate, as experts suggest, but we cannot provide the citation right now. Trust me, this is standard."
 
 private fun handleIntent(
     intent: Intent?,
@@ -325,8 +363,8 @@ private fun handleIntent(
     val payload = intent.getStringExtra(Intent.EXTRA_TEXT) ?: ""
     if (payload.length > PatternAuditor.MAX_INPUT_CHARS) {
         setError(
-            "Shared text exceeds the limit of ${PatternAuditor.MAX_INPUT_CHARS} characters. " +
-                "Truncate deliberately; the app never silently cuts the text."
+            "Shared text exceeds the limit of " + PatternAuditor.MAX_INPUT_CHARS + " characters. " +
+                "Tap CLEAR, trim the text, and paste again. The app never silently cuts the text."
         )
         return
     }
