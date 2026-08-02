@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pattern AI-uditor - Privacy Policy</title>
+  <meta name="description" content="Privacy policy for Pattern AI-uditor, a local-only Android text scanner for the DD-001 to DD-071 deception-ontology.">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.55; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #1f2937; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.6rem; border-bottom: 1px solid #d1d5db; padding-bottom: 0.25rem; }
+    h3 { font-size: 1rem; margin-top: 1.2rem; }
+    p, li { font-size: 0.95rem; }
+    .meta { color: #6b7280; font-size: 0.85rem; margin-top: 0; }
+    ul { padding-left: 1.4rem; }
+    code { background: #f3f4f6; padding: 1px 4px; border-radius: 3px; font-size: 0.85rem; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0f172a; color: #e2e8f0; }
+      h2 { border-bottom-color: #334155; }
+      code { background: #1e293b; }
+      a { color: #38bdf8; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Pattern AI-uditor - Privacy Policy</h1>
+  <p class="meta">Effective 2026-08-02. Operator: Justin Barnett (TruthProject). truth.project.official@gmail.com</p>
+
+  <h2>Summary in one line</h2>
+  <p>The app does not collect, transmit, store, log, or analyse any data outside your device. The text you scan is processed in memory and discarded.</p>
+
+  <h2>What the app does</h2>
+  <p>Pattern AI-uditor is a local Android text scanner. You paste or share text into it, the app matches that text against a fixed set of 71 lexical patterns (DD-001 through DD-071) that are compiled into the APK, and the app shows you which patterns matched. That is the whole product.</p>
+
+  <h2>What data the app collects</h2>
+  <p>None.</p>
+  <p>The app does not have the <code>android.permission.INTERNET</code> permission. It cannot make network requests. The Android system enforces this. There is no analytics SDK, no crash reporter, no telemetry, no Firebase, no Google Play Services dependency, and no third-party library that calls home.</p>
+
+  <h2>What data the app stores</h2>
+  <p>The text you type or paste, the patterns that match, and the rule explanations are kept in volatile memory (RAM) only. The app does not write to the device's internal storage, external storage, shared preferences, or any database. When the app is closed, the process terminates and the memory is released to the operating system. The next launch starts with an empty text field and no results.</p>
+  <p>The app does not save a history of past scans, no clipboard, no screenshots, no logs of what you scanned.</p>
+
+  <h2>What the app shares</h2>
+  <p>Nothing. The app does not upload, sync, copy, broadcast, or otherwise transmit anything to any other app, server, or service. The Android Share intent is <em>incoming only</em>: the app can receive text shared from another app into its input field, but it never shares anything out.</p>
+
+  <h2>Permissions</h2>
+  <p>The merged manifest of the installed APK contains exactly one permission, which Android auto-injects and which the app does not request or use:</p>
+  <ul>
+    <li><code>com.truthasaservice.ordergetitright.patternauditor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</code> &mdash; added automatically by AndroidX Core on Android 13+ for unexported dynamic receivers. The app has no other permissions. In particular it does not request <code>INTERNET</code>, <code>CAMERA</code>, <code>RECORD_AUDIO</code>, <code>READ_CONTACTS</code>, <code>LOCATION</code>, <code>READ_PHONE_STATE</code>, <code>BLUETOOTH</code>, <code>READ_EXTERNAL_STORAGE</code>, or <code>WRITE_EXTERNAL_STORAGE</code>.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>The app is not directed at children under 13. The app does not collect any data from any user, so the question does not apply, but the operator does not knowingly solicit use by children.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If the operator changes anything about data collection, this page is updated. The effective date at the top of the page is the authoritative version. Material changes are announced in the GitHub release notes at <a href="https://github.com/truthprojectofficial-max/pattern-auditor/releases">https://github.com/truthprojectofficial-max/pattern-auditor/releases</a>.</p>
+
+  <h2>Open source</h2>
+  <p>The full source code of the app, including every line of code that handles text, intents, and rendering, is public at <a href="https://github.com/truthprojectofficial-max/pattern-auditor">https://github.com/truthprojectofficial-max/pattern-auditor</a>. You can verify every claim in this policy by reading the source.</p>
+
+  <h2>Contact</h2>
+  <p>Operator: Justin Barnett (TruthProject)<br>
+  Email: <a href="mailto:truth.project.official@gmail.com">truth.project.official@gmail.com</a><br>
+  ORCID: <a href="https://orcid.org/0009-0009-2936-6966">0009-0009-2936-6966</a><br>
+  Sibling project: <a href="https://github.com/truthprojectofficial-max/truthasaservice">truthasaservice</a></p>
+
+  <h2>License</h2>
+  <p>Pattern AI-uditor source code: Apache License 2.0. Copyright 2026 Justin Barnett.</p>
+</body>
+</html>

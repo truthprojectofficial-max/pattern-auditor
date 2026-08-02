@@ -132,7 +132,7 @@ private fun App() {
         onDispose { activity.removeOnNewIntentListener(listener) }
     }
 
-    MaterialTheme {
+    PatternAuditorTheme {
         Scaffold(
             topBar = {
                 CenterAlignedTopAppBar(
