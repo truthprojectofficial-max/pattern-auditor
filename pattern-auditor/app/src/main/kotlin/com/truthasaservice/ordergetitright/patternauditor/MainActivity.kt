@@ -23,6 +23,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.focus.onFocusEvent
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -67,7 +77,7 @@ class MainActivity : ComponentActivity() {
 
 private enum class ScreenState { Idle, Scanning, Done, TooLarge, Received }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
 private fun App() {
     val sourceBadge = "71-pattern local ruleset"
@@ -136,9 +146,14 @@ private fun App() {
                     .padding(inner),
                 color = MaterialTheme.colorScheme.background,
             ) {
+                val keyboard = LocalSoftwareKeyboardController.current
+                val bringIntoView = remember { BringIntoViewRequester() }
+                val scope = rememberCoroutineScope()
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .imePadding()
+                        .verticalScroll(rememberScrollState())
                         .padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
@@ -172,7 +187,13 @@ private fun App() {
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .heightIn(min = 220.dp),
+                            .heightIn(min = 220.dp, max = 320.dp)
+                            .bringIntoViewRequester(bringIntoView)
+                            .onFocusEvent { st ->
+                                if (st.isFocused) {
+                                    scope.launch { bringIntoView.bringIntoView() }
+                                }
+                            },
                         label = { Text("Paste or type text to scan") },
                         supportingText = {
                             Text("${text.length} / ${PatternAuditor.MAX_INPUT_CHARS} chars")
