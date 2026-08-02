@@ -1,0 +1,103 @@
+﻿Pattern AI-uditor v0.1.0 - How to install on your Android phone
+===============================================================
+
+You were sent a link, not a file. That's the point.
+Clicking the link on your phone is the whole install.
+
+THE LINK
+--------
+https://github.com/truthprojectofficial-max/pattern-auditor/releases/download/v0.1.0/Pattern-AI-uditor-v0.1.0.apk
+
+WHAT IT IS
+----------
+An Android app called "Pattern AI-uditor". It is a local-only
+text scanner. It runs entirely on your phone. It does not connect
+to the internet. It does not collect, send, or store anything.
+
+It contains 71 lexical patterns (DD-001..DD-071) and tells you
+which ones match a piece of text you give it. That is the whole
+product. No ads, no analytics, no account, no in-app purchases.
+
+INSTALL - ON YOUR PHONE
+-----------------------
+1. Open this link on your Android phone:
+   https://github.com/truthprojectofficial-max/pattern-auditor/releases/download/v0.1.0/Pattern-AI-uditor-v0.1.0.apk
+
+2. Chrome will say "this type of file can harm your device".
+   That is a generic Android warning for any APK downloaded from
+   the web. Tap "Download anyway" / "Keep". The file is signed by
+   the developer and the SHA-256 hash matches the one published
+   on the GitHub release page (d2f603b8...d92268e).
+
+3. When the download finishes, swipe down from the top of the
+   screen and tap the downloaded file. Or open the Files app
+   and tap it there.
+
+4. Android will say "For your security, your phone is not
+   allowed to install unknown apps from this source." Tap
+   "Settings", then turn ON "Allow from this source" for
+   Chrome (or whichever app you used). This permission is
+   per-app and per-download - you are only allowing Chrome
+   to install this one APK, not anything else in the future.
+
+5. Go back. Tap "Install". Wait ~3 seconds.
+
+6. Tap "Open". You are in.
+
+USING IT
+--------
+- Type or paste up to 50,000 characters into the text box.
+  Tap SCAN. Read the result cards.
+- OR: in any app, select text, tap Share, pick "Pattern
+  AI-uditor" from the share sheet. The text lands in the box
+  and the scan runs automatically.
+
+WHAT THE RESULT MEANS
+---------------------
+Each match is a card showing:
+  - the pattern ID and name (e.g. DD-001 - Facade of
+    Competence)
+  - the exact phrase from your text that triggered the match
+  - the indicator (the keyword/phrase the pattern looks for)
+  - the rule explanation
+  - the ruleset version
+
+What the result does NOT mean:
+  - It does not mean the text is a lie.
+  - It does not mean the writer is deceitful.
+  - It does not measure truth, intent, or diagnosis.
+  - "No configured pattern detected" does not mean the text
+    is honest. It just means none of the 71 lexical indicators
+    fired.
+
+IF SOMETHING GOES WRONG
+-----------------------
+- App won't install: the file may be incomplete. Re-download
+  from the link above. If Chrome's "Open after download"
+  jumped straight to installer, the file is ~5.7 MB; if yours
+  is smaller, the download was cut off.
+- App crashes on launch: take a screenshot. Send it to the
+  person who sent you the link. The developer will fix it.
+- App says "Nothing to scan": the share didn't carry text.
+  Try a different app, or copy the text and paste it into
+  the field.
+
+UNINSTALL
+---------
+Long-press the app icon -> App info -> Uninstall.
+This removes the app. Nothing is left on your phone; nothing
+was sent anywhere.
+
+VERIFICATION (optional, for the curious)
+----------------------------------------
+- GitHub release page:
+  https://github.com/truthprojectofficial-max/pattern-auditor/releases/tag/v0.1.0
+- Full source:
+  https://github.com/truthprojectofficial-max/pattern-auditor
+- Operator: Justin Barnett (TruthProject)
+  truth.project.official@gmail.com
+  ORCID 0009-0009-2936-6966
+- License: Apache 2.0
+
+Field test window: 2026-08-02 to 2026-08-16. After that the
+app may move to the Google Play Store.
