@@ -1,3 +1,7 @@
+// Operator: Justin Barnett (TruthProject)
+// contact: truth.project.official@gmail.com
+// Sibling: github.com/truthprojectofficial-max/truthasaservice
+
 import java.util.Properties
 import java.io.FileInputStream
 

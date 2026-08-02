@@ -1,3 +1,12 @@
+/*
+ * Operator: Justin Barnett (TruthProject)
+ * Contact:   truth.project.official@gmail.com
+ * Sibling:   github.com/truthprojectofficial-max/truthasaservice
+ * ORCID:     0009-0009-2936-6966
+ *
+ * This file is part of pattern-auditor, the native Android client for the
+ * DD-001..DD-071 deception-ontology. Local-only. No network. No telemetry.
+ */
 package com.truthasaservice.ordergetitright.patternauditor
 
 enum class Severity { LOW, MEDIUM, HIGH, CRITICAL }

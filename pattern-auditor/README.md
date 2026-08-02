@@ -116,3 +116,12 @@ which androidx.core adds on SDK 33+ for unexported dynamic receivers.
 ## License
 
 Personal, operator-owned. No external accounts, no network calls.
+
+## Developer
+
+- Operator: Justin Barnett (Juzzy Chance)
+- Organisation: TruthProject
+- Contact: truth.project.official@gmail.com
+- ORCID: https://orcid.org/0009-0009-2936-6966
+- Timezone: Australia, UTC +09:30
+- Sibling project: https://github.com/truthprojectofficial-max/truthasaservice
