@@ -1,11 +1,29 @@
-# AIDERTESTBOX .gitignore
-# Aider chat history + cache stay in the sandbox, not in git
+# OS / IDE
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+*~
 
-.aider.*
-aider/
-__pycache__/
-*.pyc
-.env
-.venv/
-.venv311/
-.git.wsl-pointer
+# Build outputs we do NOT want in git
+.gradle/
+build/
+*.iml
+.idea/
+
+# Local-only tooling
+android-sdk/
+gradle-dist/
+pattern-auditor/.gradle/
+pattern-auditor/build/
+pattern-auditor/app/build/
+pattern-auditor/keystore/
+pattern-auditor/key.properties
+pattern-auditor/local.properties
+pattern-auditor/screenshots/
+pattern-auditor/*.log
+
+# Logs and temp
+*.log
+*.tmp
+nul
